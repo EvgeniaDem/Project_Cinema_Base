@@ -66,7 +66,7 @@ public class Movie {
     private Set<Genre> genres;
 
     @OneToMany
-    private List<Score> score;
+    private List<Score> scores;
 
     @Override
     public boolean equals(Object o) {

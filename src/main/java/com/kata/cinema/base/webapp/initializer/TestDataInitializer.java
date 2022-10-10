@@ -92,7 +92,31 @@ public class TestDataInitializer {
             Collections.shuffle(genreList);
             movie.setGenres(new HashSet<>(genreList.subList(genreList.size() - randomSize, genreList.size())));
 
+            List<Score> scores = new ArrayList<>();
+            movie.setScores(scores);
+
             movieDtoService.create(movie);
+        }
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    @Order(3)
+    @Async
+    public void scoreInit() {
+        List<Movie> movieEl = movieDtoService.getAll();
+        List<User> userEl = userService.getAll();
+        for (Movie movie : movieEl) {
+            Collections.shuffle(userEl);
+            Iterator<User> userIterator = userEl.iterator();
+            List<Score> scores = new ArrayList<>();
+            for (int i = 1; i <= 20; i++) {
+                Score score = new Score();
+                score.setScore(ThreadLocalRandom.current().nextInt(1, 11));
+                score.setMovie(movie);
+                score.setUser(userIterator.hasNext() ? userIterator.next() : null);
+                scores.add(score);
+                scoreService.create(score);
+            }
         }
     }
 
@@ -293,25 +317,6 @@ public class TestDataInitializer {
         }
         folderMovie.setMovies(movieSet);
         folderMoviesService.create(folderMovie);
-    }
-
-    @EventListener(ApplicationReadyEvent.class)
-    @Order(3)
-    @Async
-    public void scoreInit() {
-        List<Movie> movieEl = movieDtoService.getAll();
-        List<User> userEl = userService.getAll();
-        for (Movie movie : movieEl) {
-            Collections.shuffle(userEl);
-            Iterator<User> userIterator = userEl.iterator();
-            for (int i = 1; i <= 20; i++) {
-                Score score = new Score();
-                score.setScore(ThreadLocalRandom.current().nextInt(1, 11));
-                score.setMovie(movie);
-                score.setUser(userIterator.hasNext() ? userIterator.next() : null);
-                scoreService.create(score);
-            }
-        }
     }
 
     //TODO поставить в очередь после инициализации users, когда появится о них информация

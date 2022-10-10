@@ -5,4 +5,6 @@ import com.kata.cinema.base.models.entitys.User;
 
 public interface MovieRatingService {
     void addRating(MovieRatingRequest request, User user);
+
+    void deleteRating(Long movieId, User user);
 }

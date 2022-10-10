@@ -1,9 +1,12 @@
 package com.kata.cinema.base.models.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kata.cinema.base.models.entitys.Score;
 import com.kata.cinema.base.models.enums.MPAA;
 import com.kata.cinema.base.models.enums.RARS;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
@@ -30,7 +33,7 @@ public class MovieViewResponseDto {
     private String previewUrl;
     private String genres;
 
-    private  Double score;
+    private List<Score> scores;
     private Integer countScore;
     private Integer myScore; // если пользователь не авторизован, myScore null
 
@@ -38,7 +41,7 @@ public class MovieViewResponseDto {
 
     public MovieViewResponseDto(Long id, String name, String originalName, String countries,
                                 LocalDate dateRelease, RARS rars, MPAA mpaa, String description,
-                                String previewUrl, String genres, Double score, Integer countScore, Integer myScore) {
+                                String previewUrl, String genres, List<Score> scores, Integer countScore, Integer myScore) {
         this.id = id;
         this.name = name;
         this.originalName = originalName;
@@ -49,7 +52,7 @@ public class MovieViewResponseDto {
         this.description = description;
         this.previewUrl = previewUrl;
         this.genres = genres;
-        this.score = score;
+        this.scores = scores;
         this.countScore = countScore;
         this.myScore = myScore;
     }

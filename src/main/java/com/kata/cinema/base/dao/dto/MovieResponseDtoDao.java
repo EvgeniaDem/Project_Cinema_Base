@@ -8,5 +8,6 @@ import java.util.Map;
 
 public interface MovieResponseDtoDao {
     Map<Long, List<MovieResponseDto>> getMapMovieResponseValueByCollectionMoviesDtoIds(Map<String, Object> parameters, Long id);
+
     String getOrder(СollectionSortType collectionSortType);
 }
