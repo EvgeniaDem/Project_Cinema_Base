@@ -306,7 +306,7 @@ public class TestDataInitializer {
             Iterator<User> userIterator = userEl.iterator();
             for (int i = 1; i <= 20; i++) {
                 Score score = new Score();
-                score.setScore(ThreadLocalRandom.current().nextLong(1, 11));
+                score.setScore(ThreadLocalRandom.current().nextInt(1, 11));
                 score.setMovie(movie);
                 score.setUser(userIterator.hasNext() ? userIterator.next() : null);
                 scoreService.create(score);

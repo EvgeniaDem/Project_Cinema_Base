@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface MovieViewResponseDtoDao {
     MovieViewResponseDto getMovieViewResponse(long id, User user);
+
     List<CastResponseDto> getCastResponse(long id);
+
     List<MoviePersonResponseDto> getMoviePerson(long id);
 }

@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -15,12 +16,15 @@ import java.util.Objects;
 public class Score {
     @Id
     @SequenceGenerator(name = "gen_score")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "gen_score")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_score")
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "score")
-    private Long score;
+    private Integer score;
+
+    @Column(name = "date")
+    private LocalDate date;
 
     @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

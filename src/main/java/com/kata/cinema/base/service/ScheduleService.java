@@ -1,6 +1,5 @@
 package com.kata.cinema.base.service;
 
-import com.kata.cinema.base.dao.entity.MovieTicketsDao;
 import com.kata.cinema.base.service.entity.MovieTicketsService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
